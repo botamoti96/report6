@@ -24,6 +24,11 @@ repositories {
     jcenter()
 }
 
+javadoc {
+    options.charSet = "UTF-8"
+    options.encoding = "UTF-8"
+}
+
 run{ 
     standardInput = System.in 
 } 

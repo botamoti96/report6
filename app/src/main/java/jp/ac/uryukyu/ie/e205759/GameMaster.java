@@ -2,15 +2,25 @@ package jp.ac.uryukyu.ie.e205759;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * GameMaster class. Controle the game.
+ * 
+ */
 public class GameMaster {
     private ArrayList<Participant> participants;
     private int specified_number;
+    private int min = 1;
+    private int max = 100;
     //ゲームのルール
     //1. 1-100の数字をGMが秘密裏に決めてゲームスタート。
     //2. プレイヤーは1-100の範囲で数字を宣言する。
     //3. GMはその数を最小値または最大値とし、指定数を含むように範囲を狭める。
     //   例_GM指定数が50、宣言数が30なら次の宣言は30-100の範囲とする。
     //4. 指定数と宣言数が被ったらその人の負け。
+
+    /**
+     * Constracter.
+     */
     public GameMaster(){
         participants = new ArrayList<>();
         Random rd = new Random();
@@ -21,13 +31,35 @@ public class GameMaster {
         participants.add(com);
     }
 
-    public void addPlayer(){
+    /**
+     * If need to change the range, use this.
+     * @param min minimum range.
+     * @param max maximum range.
+     */
+    public void setRange(int min, int max){
+        if (min<max && min>0){
+            this.min = min;
+            this.max = max;
+        }
+        else{
+            System.out.println("不正な入力です。");
+        }
+    }
+
+    /**
+     * Set up the game. Use before the beginning.
+     */
+    public void gameSetup(){
         
     }
 
+    /**
+     * Start the game. Loop continues while game is active.
+     * All players declare a number in order.
+     * If the number equals to GM's specified number, the player loses.
+     * Last one player is winner.
+     */
     public void game(){
-        int min = 1;
-        int max = 100;
         Boolean isGame = true;
         while(isGame){
             for(Participant p:participants){
@@ -55,7 +87,6 @@ public class GameMaster {
                     min = declare_number+1;
                 }
             }
-
         }
     }
 }
