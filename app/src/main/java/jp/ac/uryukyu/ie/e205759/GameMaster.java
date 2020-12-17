@@ -21,10 +21,6 @@ public class GameMaster {
         participants.add(com);
     }
 
-    public int spoiler(){
-        return specified_number;
-    }
-
     public void addPlayer(){
         
     }
@@ -41,13 +37,12 @@ public class GameMaster {
                     declare_number = p.tell_number(min,max);
                 }
                 if(declare_number == specified_number){
+                    System.out.println("指定数は、" + String.valueOf(specified_number) + "でした。");
                     System.out.println(p.getName() + "の負けです。");
                     if (p.getName() == "プレイヤー"){
-                        System.out.println("指定数は、" + String.valueOf(specified_number) + "でした。");
                         System.out.println("残念！また挑戦してね。");
                     }
                     else{
-                        System.out.println("指定数は、" + String.valueOf(specified_number) + "でした。");
                         System.out.println("あなたの勝ち！おめでとう！");
                     }
                     isGame = false;
