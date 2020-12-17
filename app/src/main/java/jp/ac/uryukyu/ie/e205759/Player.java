@@ -1,11 +1,16 @@
 package jp.ac.uryukyu.ie.e205759;
 import java.util.Scanner;
 
-public class Player extends Participant{
+public class Player implements Participant{
+    private String name;
     //プレイヤーは数字を宣言することができる。
     //それしかできない。
     Player(String name){
-        super(name);
+        this.name = name;
+    }
+
+    public String getName(){
+        return name;
     }
 
     public int tell_number(int min, int max){
@@ -13,7 +18,7 @@ public class Player extends Participant{
         System.out.println("の範囲で、数字を入力してください。");
         Scanner scan = new Scanner(System.in);
         int number = scan.nextInt();
-        scan.close();
+        //scan.close();
         if(min<=number && max>=number){
             return number;
         }

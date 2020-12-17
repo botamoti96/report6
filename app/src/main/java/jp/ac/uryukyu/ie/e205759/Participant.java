@@ -1,13 +1,6 @@
 package jp.ac.uryukyu.ie.e205759;
 
-abstract class Participant {
-    private String name;
-    
-    Participant(String name){
-        this.name = name;
-    }
-
-    public String getName(){
-        return this.name;
-    }
+interface Participant {
+    String getName();
+    int tell_number(int min, int max);
 }

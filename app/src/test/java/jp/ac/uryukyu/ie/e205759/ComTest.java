@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ComTest {
     /**
+     * Comは指定された範囲の中からランダムな数字を一つ返すtell_numberメソッドを持つ。
      * 条件を変えつつ5回試して、全て指定の範囲内であれば成功
      */
     @Test
