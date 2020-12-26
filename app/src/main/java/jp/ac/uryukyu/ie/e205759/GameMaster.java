@@ -1,6 +1,7 @@
 package jp.ac.uryukyu.ie.e205759;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * GameMaster class. Controle the game.
@@ -25,10 +26,6 @@ public class GameMaster {
         participants = new ArrayList<>();
         Random rd = new Random();
         specified_number = rd.nextInt(100)+1;
-        Player pl = new Player("プレイヤー");
-        Com com = new Com("COM");
-        participants.add(pl);
-        participants.add(com);
     }
 
     /**
@@ -46,11 +43,56 @@ public class GameMaster {
         }
     }
 
-    /**
-     * Set up the game. Use before the beginning.
-     */
     public void gameSetup(){
-        
+        Scanner scan = new Scanner(System.in);
+        System.out.println("ゲームに参加する人数を選択してください。");
+        System.out.println("おっと！今は二人でしか遊べません。");
+        int number = 2;
+        System.out.println("プレイヤー人数を入力してください。");
+        int playernumber = scan.nextInt();
+        boolean isSetupSuccess = true;
+        if (number < playernumber){
+            System.out.println("プレイヤー人数が参加者数を超えています。");
+            isSetupSuccess = false;
+        }
+        if (playernumber < 1){
+            System.out.println("プレイヤーがいません。");
+            isSetupSuccess = false;
+        }
+        if (number > 2){
+            System.out.println("参加者が多すぎます。");
+            isSetupSuccess = false;
+        }
+        if (number < 2){
+            System.out.println("参加者が少なすぎます。");
+            isSetupSuccess = false;
+        }
+        if (isSetupSuccess){
+            if (number == 2){
+                if (playernumber == 1){
+                    Player pl = new Player("プレイヤー");
+                    participants.add(pl);
+                    Com COM = new Com("COM");
+                    participants.add(COM);
+                }
+                if (playernumber == 2){
+                    Player pl1 = new Player("プレイヤー1");
+                    participants.add(pl1);
+                    Player pl2 = new Player("プレイヤー2");
+                    participants.add(pl2);
+                }
+            }
+        }
+        else{
+            System.out.println("セットアップに失敗しました。");
+            System.out.println("デフォルト設定で開始します。");
+            Player pl = new Player("プレイヤー");
+            participants.add(pl);
+            Com com = new Com("COM");
+            participants.add(com);
+        }
+        //scan.close();
+
     }
 
     /**
@@ -74,7 +116,7 @@ public class GameMaster {
                     if (p.getName() == "プレイヤー"){
                         System.out.println("残念！また挑戦してね。");
                     }
-                    else{
+                    if (p.getName() == "COM"){
                         System.out.println("あなたの勝ち！おめでとう！");
                     }
                     isGame = false;
