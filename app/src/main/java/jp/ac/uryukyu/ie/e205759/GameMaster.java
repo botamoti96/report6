@@ -33,16 +33,27 @@ public class GameMaster {
      * @param min minimum range.
      * @param max maximum range.
      */
-    public void setRange(int min, int max){
-        if (min<max && min>0){
-            this.min = min;
-            this.max = max;
+    public void setRange(){
+        System.out.println("デフォルトは1-100です。");
+        Scanner scan = new Scanner(System.in);
+        System.out.println("範囲の最小値を入力してください。");
+        int t_min = scan.nextInt();
+        System.out.println("範囲の最大値を入力してください。");
+        int t_max = scan.nextInt();
+        if (t_min<t_max && t_min>0){
+            this.min = t_min;
+            this.max = t_max;
         }
         else{
             System.out.println("不正な入力です。");
+            System.out.println("設定の変更に失敗しました。");
         }
     }
 
+
+    /**
+    * Set up the game. Use before the beggining.
+    */
     public void gameSetup(){
         Scanner scan = new Scanner(System.in);
         System.out.println("ゲームに参加する人数を選択してください。");
