@@ -30,8 +30,6 @@ public class GameMaster {
 
     /**
      * If need to change the range, use this.
-     * @param min minimum range.
-     * @param max maximum range.
      */
     public void setRange(){
         System.out.println("デフォルトは1-100です。");
@@ -41,8 +39,10 @@ public class GameMaster {
         System.out.println("範囲の最大値を入力してください。");
         int t_max = scan.nextInt();
         if (t_min<t_max && t_min>0){
+            Random rd = new Random();
             this.min = t_min;
             this.max = t_max;
+            specified_number = rd.nextInt(max-min)+min;
         }
         else{
             System.out.println("不正な入力です。");
