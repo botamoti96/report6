@@ -32,7 +32,14 @@ public class Player implements Participant{
         System.out.print(String.valueOf(min) + "-" + String.valueOf(max));
         System.out.println("の範囲で、数字を入力してください。");
         Scanner scan = new Scanner(System.in);
-        int number = scan.nextInt();
+        int number;
+        try{
+            number = scan.nextInt();
+        }
+        catch(Exception e){
+            number = 0;
+        }
+        
         //scan.close();
         if(min<=number && max>=number){
             return number;

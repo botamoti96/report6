@@ -17,7 +17,7 @@ public class GameMaster {
     //2. プレイヤーは1-100の範囲で数字を宣言する。
     //3. GMはその数を最小値または最大値とし、指定数を含むように範囲を狭める。
     //   例_GM指定数が50、宣言数が30なら次の宣言は30-100の範囲とする。
-    //4. 指定数と宣言数が被ったらその人の負け。
+    //4. 指定数と宣言数が被ったら宣言した人の負け。
 
     /**
      * Constracter.
@@ -60,8 +60,14 @@ public class GameMaster {
         System.out.println("おっと！今は二人でしか遊べません。");
         int number = 2;
         System.out.println("プレイヤー人数を入力してください。");
-        int playernumber = scan.nextInt();
-        boolean isSetupSuccess = true;
+        int playernumber;
+        try{
+            playernumber = scan.nextInt();
+        }
+        catch(Exception e){
+            playernumber = 0;
+        }
+        boolean isSetupSuccess = true; //セットアップに失敗したら、
         if (number < playernumber){
             System.out.println("プレイヤー人数が参加者数を超えています。");
             isSetupSuccess = false;
@@ -79,14 +85,14 @@ public class GameMaster {
             isSetupSuccess = false;
         }
         if (isSetupSuccess){
-            if (number == 2){
-                if (playernumber == 1){
+            if (number == 2){//参加者が二人なら
+                if (playernumber == 1){//プレイヤーが一人ならCom対戦をする
                     Player pl = new Player("プレイヤー");
                     participants.add(pl);
                     Com COM = new Com("COM");
                     participants.add(COM);
                 }
-                if (playernumber == 2){
+                if (playernumber == 2){//プレイヤーが二人ならその二人で対戦する
                     Player pl1 = new Player("プレイヤー1");
                     participants.add(pl1);
                     Player pl2 = new Player("プレイヤー2");
