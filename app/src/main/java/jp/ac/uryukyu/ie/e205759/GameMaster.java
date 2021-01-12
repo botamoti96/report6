@@ -5,13 +5,13 @@ import java.util.Scanner;
 
 /**
  * GameMaster class. Controle the game.
- * 
  */
 public class GameMaster {
     private ArrayList<Participant> participants;
     private int specified_number;
     private int min = 1;
     private int max = 100;
+    private static Scanner scan = new Scanner(System.in);
     //ゲームのルール
     //1. 1-100の数字をGMが秘密裏に決めてゲームスタート。
     //2. プレイヤーは1-100の範囲で数字を宣言する。
@@ -20,7 +20,7 @@ public class GameMaster {
     //4. 指定数と宣言数が被ったら宣言した人の負け。
 
     /**
-     * Constracter.
+     * Constracter to determine a number for using in the game.
      */
     public GameMaster(){
         participants = new ArrayList<>();
@@ -33,7 +33,7 @@ public class GameMaster {
      */
     public void setRange(){
         System.out.println("デフォルトは1-100です。");
-        Scanner scan = new Scanner(System.in);
+        //Scanner scan = new Scanner(System.in);
         System.out.println("範囲の最小値を入力してください。");
         int t_min = scan.nextInt();
         System.out.println("範囲の最大値を入力してください。");
@@ -55,7 +55,7 @@ public class GameMaster {
     * Set up the game. Use before the beggining.
     */
     public void gameSetup(){
-        Scanner scan = new Scanner(System.in);
+        //Scanner scan = new Scanner(System.in);
         System.out.println("ゲームに参加する人数を選択してください。");
         System.out.println("おっと！今は二人でしか遊べません。");
         int number = 2;
@@ -67,7 +67,7 @@ public class GameMaster {
         catch(Exception e){
             playernumber = 0;
         }
-        boolean isSetupSuccess = true; //セットアップに失敗したら、
+        boolean isSetupSuccess = true; //セットアップに失敗したら、デフォルト設定に切り替える
         if (number < playernumber){
             System.out.println("プレイヤー人数が参加者数を超えています。");
             isSetupSuccess = false;
@@ -111,6 +111,18 @@ public class GameMaster {
         //scan.close();
 
     }
+    /**
+     * make players wait for slowdown display speed.
+     */
+    public void waitMoment(int time){
+        try{
+            Thread.sleep(time);
+        }
+        catch(InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * Start the game. Loop continues while game is active.
@@ -127,6 +139,12 @@ public class GameMaster {
                 while(declare_number==0){
                     declare_number = p.tell_number(min,max);
                 }
+                for(int i=0;i<3;i++){
+                waitMoment(500);
+                System.out.print("・");
+                }
+                waitMoment(500);
+                System.out.println("");
                 if(declare_number == specified_number){
                     System.out.println("指定数は、" + String.valueOf(specified_number) + "でした。");
                     System.out.println(p.getName() + "の負けです。");

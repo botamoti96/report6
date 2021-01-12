@@ -7,6 +7,9 @@ import java.util.Scanner;
  */
 public class Player implements Participant{
     private String name;
+    //private static Scanner scan = new Scanner(System.in);
+    //Stringが入力されたとき無限にループする不具合が発生したためコメントアウト
+
     //プレイヤーは数字を宣言することができる。
     //それしかできない。
     Player(String name){

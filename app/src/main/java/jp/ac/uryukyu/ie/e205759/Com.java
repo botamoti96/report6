@@ -9,6 +9,7 @@ import java.util.Random;
 public class Com implements Participant{
     private String name;
     //comは自分の判断で適当な数字を宣言してGMに伝える。
+
     Com(String name){
         this.name = name;
     }
@@ -24,7 +25,7 @@ public class Com implements Participant{
 
     /**
      * Generate a random number within the range specified by parameters.
-     *  @param min nimimum range.
+     *  @param min minimum range.
      *  @param max maximum range.
      *  @return a number within the specified range
      */
